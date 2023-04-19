@@ -3,11 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.grupo1.tpentrega3;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 /**
  *
  * @author mcasatti
@@ -17,20 +13,15 @@ public class Participante {
     private String nombre;
     private ListaPronosticos pronosticos;
     public static ListaPronosticos p;
-    private String connectionDB;
     
     public Participante() {
-        this.idParticipante = 0;
-        this.nombre = null;
-        this.pronosticos = new ListaPronosticos();
-        this.connectionDB = "jdbc:sqlite:"+System.getProperty("user.dir")+"/src/main/java/com/grupo1/tpentrega3/pronosticos.db";
+        
     }
     
-    public Participante(int idParticipante, String nombre, ListaPronosticos pronosticos, String connectionDB) {
+    public Participante(int idParticipante, String nombre, ListaPronosticos pronosticos) {
         this.idParticipante = idParticipante;
         this.nombre = nombre;
         this.pronosticos = pronosticos;
-        this.connectionDB =  "jdbc:sqlite:"+System.getProperty("user.dir")+"/src/main/java/com/grupo1/tpentrega3/pronosticos.db";
     }
 
     public String getNombre() {
@@ -65,22 +56,6 @@ public class Participante {
     }
     setPronosticos(p);
     }
-    
-     public void cargarPronosticosBD(ListaEquipos equipos, ListaPartidos partidos){
-       p = new ListaPronosticos();
-       
-       
-       
-       
-       
-       
-    for(Pronostico pronostico : pronosticos.getPronosticos()){
-    if(pronostico.getIdParticipante()== idParticipante) {p.addPronostico(pronostico);}
-    }
-    setPronosticos(p);
-    }
-    
-    
     
     // Calculando los puntos de las salidas de los particpantes
     public int resultados() {
