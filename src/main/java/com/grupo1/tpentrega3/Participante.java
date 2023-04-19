@@ -74,20 +74,21 @@ public class Participante {
          Connection conn = null;
             try {
             // Establcer una conexion
-            conn = DriverManager.getConnection("jdbc:sqlite:"+System.getProperty("user.dir")+"/src/main/java/com/grupo1/tpentrega3/pronosticos.db");
+            conn = DriverManager.getConnection(connectionDB);
             System.out.println("Conexion establecida pronosticos");
             Statement stmt = conn.createStatement();
        //     String sql2 = "SELECT * FROM pronosticos ";
-           String sql = "SELECT " + " idPronostico, idParticipante, idPartido, idEquipo, resultado" + "FROM pronosticos ";
+           String sql = "SELECT " + " idPronostico, idParticipante, idPartido, idEquipo, resultado " + "FROM pronosticos";
             ResultSet rs = stmt.executeQuery(sql);
            //  ResultSet rs2 = stmt.executeQuery(sql2);
             while (rs.next()){
-                
+            if(idParticipante==rs.getInt("idParticipante"))
+            {
               Pronostico pronostico = new Pronostico (rs.getInt("idPronostico"),
                                                    rs.getInt("idParticipante"), 
                                                   equipos.getEquipo(rs.getInt("idEquipo")),
                                                    partidos.getPartido(rs.getInt("idPartido")),
-                                                   rs.getString("resultado").charAt(1));   
+                                                   rs.getString("resultado").charAt(0));   
                 
           //Pronostico pronostico = new Pronostico (rs.getInt("idPronostico"),
             //                                       rs.getInt("idParticipante"), 
@@ -95,30 +96,27 @@ public class Participante {
                 //                                   partidos.getPartido(rs.getInt("idPartido")),
                   //                                 rs.getString("Resultado").charAt(1));
          //   System.out.println("imprimiendo"+rs2.toString());
-            System.out.println(pronostico.toString());
-            p.addPronostico(pronostico);
+         
+         p.addPronostico(pronostico);
+         System.out.println(pronostico.toString());
+            }
+                   
             
                     }
+            setPronosticos(p);
             }
             catch(SQLException ex) {
             System.out.println(ex.getMessage());
             } finally {
             try {
-                setPronosticos(p);
+                
                 if (conn!=null) {
                 conn.close();}
             }
             catch(SQLException ex){
              System.out.println(ex.getMessage());
             }
-            }
-       
-       
-       
-    for(Pronostico pronostico : pronosticos.getPronosticos()){
-    if(pronostico.getIdParticipante()== idParticipante) {p.addPronostico(pronostico);}
-    }
-    setPronosticos(p);
+                     }
     }
     
     
