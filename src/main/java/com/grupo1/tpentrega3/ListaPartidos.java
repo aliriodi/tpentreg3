@@ -2,6 +2,13 @@
 package com.grupo1.tpentrega3;
 //Importamos las librerias que hacen falta para importar el csv
 // y el arraylist
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,15 +23,18 @@ public class ListaPartidos {
     
       private List<Partido> partidos;
       private String partidosCSV;
+       private String connectionDB;
 
     public ListaPartidos(List<Partido> partidos, String partidosCSV) {
         this.partidos = partidos;
         this.partidosCSV = partidosCSV;
+        this.connectionDB = connectionDB;
     }
     
      public ListaPartidos() {
         this.partidos = new ArrayList<Partido>();
         this.partidosCSV = System.getProperty("user.dir")+"/src/main/java/com/grupo1/tpentrega3//partidos.csv";
+        this.connectionDB = "jdbc:sqlite:"+System.getProperty("user.dir")+"/src/main/java/com/grupo1/tpentrega3/pronosticos.db";
     }
 
     public List<Partido> getPartidos() {
@@ -131,6 +141,42 @@ public class ListaPartidos {
                 System.out.println("Mensaje: " + ex.getMessage());
         }       
 
+    }
+    
+    // cargar desde la BASE DE DATOS
+    public void cargarDeBD(ListaEquipos equipos) {
+            Connection conn = null;
+            try {
+            // Establcer una conexion
+            conn = DriverManager.getConnection(connectionDB);
+            System.out.println("Conexion establecida");
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT " + "idPartido, idEquipo1, idEquipo2,GolesEquipo1, GolesEquipo2 " + "FROM partidos ";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                
+            Partido partido = new Partido (rs.getInt("idPartido"),
+                                           equipos.getEquipo(rs.getInt("idEquipo1")),
+                                           equipos.getEquipo(rs.getInt("idEquipo2")),
+                                           rs.getInt("GolesEquipo1"),
+                                           rs.getInt("GolesEquipo2"));
+            
+            System.out.println(partido.toString());
+            
+            
+                    }
+            }
+            catch(SQLException ex) {
+            System.out.println(ex.getMessage());
+            } finally {
+            try {
+                if (conn!=null) {
+                conn.close();}
+            }
+            catch(SQLException ex){
+             System.out.println(ex.getMessage());
+            }
+            }
     }
 
   

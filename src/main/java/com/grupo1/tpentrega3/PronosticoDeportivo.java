@@ -28,7 +28,8 @@ public class PronosticoDeportivo {
         System.out.println("Los equipos cargados son: " + equipos.listar());
  
 
-        partidos.cargarDeArchivo(equipos);
+        //partidos.cargarDeArchivo(equipos);
+        partidos.cargarDeBD(equipos);
         System.out.println("Los partidos cargados son: " + partidos.listar());
 
       
