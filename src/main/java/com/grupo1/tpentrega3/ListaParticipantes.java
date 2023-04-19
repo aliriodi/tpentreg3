@@ -140,7 +140,7 @@ public class ListaParticipantes {
                 String nombre = vectorParticipante[1];
                 
                 // crea el objeto en memoria
-                participante = new Participante(idParticipante, nombre,null);
+                participante = new Participante(idParticipante, nombre,null,connectionDB);
                 
                 // llama al metodo add para grabar el equipo en la lista en memoria
                 this.addParticipante(participante);
@@ -163,7 +163,7 @@ public class ListaParticipantes {
             String sql = "SELECT " + "idParticipante, nombre " + "FROM partcipantes ";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()){
-            Participante participante = new Participante (rs.getInt("idParticipante"),rs.getString("nombre"),null);
+            Participante participante = new Participante (rs.getInt("idParticipante"),rs.getString("nombre"),null,connectionDB);
             System.out.println(participante.toString());
             
             
