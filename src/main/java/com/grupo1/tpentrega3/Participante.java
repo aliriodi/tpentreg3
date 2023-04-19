@@ -17,20 +17,20 @@ public class Participante {
     private String nombre;
     private ListaPronosticos pronosticos;
     public static ListaPronosticos p;
-    private String connectionDB;
+    //private String connectionDB;
     
     public Participante() {
         this.idParticipante = 0;
         this.nombre = null;
         this.pronosticos = new ListaPronosticos();
-        this.connectionDB = "jdbc:sqlite:"+System.getProperty("user.dir")+"/src/main/java/com/grupo1/tpentrega3/pronosticos.db";
+ //       this.connectionDB = "jdbc:sqlite:"+System.getProperty("user.dir")+"/src/main/java/com/grupo1/tpentrega3/pronosticos.db";
     }
     
-    public Participante(int idParticipante, String nombre, ListaPronosticos pronosticos, String connectionDB) {
+    public Participante(int idParticipante, String nombre, ListaPronosticos pronosticos) {
         this.idParticipante = idParticipante;
         this.nombre = nombre;
         this.pronosticos = pronosticos;
-        this.connectionDB =  "jdbc:sqlite:"+System.getProperty("user.dir")+"/src/main/java/com/grupo1/tpentrega3/pronosticos.db";
+  //      this.connectionDB =  "jdbc:sqlite:"+System.getProperty("user.dir")+"/src/main/java/com/grupo1/tpentrega3/pronosticos.db";
     }
 
     public String getNombre() {
@@ -59,7 +59,8 @@ public class Participante {
     }
         
     public void cargarPronosticos(ListaPronosticos pronosticos){
-       p = new ListaPronosticos();
+        
+        p = new ListaPronosticos();
     for(Pronostico pronostico : pronosticos.getPronosticos()){
     if(pronostico.getIdParticipante()== idParticipante) {p.addPronostico(pronostico);}
     }
@@ -68,9 +69,49 @@ public class Participante {
     
      public void cargarPronosticosBD(ListaEquipos equipos, ListaPartidos partidos){
        p = new ListaPronosticos();
-       
-       
-       
+       String connectionDB = "jdbc:sqlite:"+System.getProperty("user.dir")+"/src/main/java/com/grupo1/tpentrega3/pronosticos.db";
+       //   System.out.println(connectionDB);
+         Connection conn = null;
+            try {
+            // Establcer una conexion
+            conn = DriverManager.getConnection("jdbc:sqlite:"+System.getProperty("user.dir")+"/src/main/java/com/grupo1/tpentrega3/pronosticos.db");
+            System.out.println("Conexion establecida pronosticos");
+            Statement stmt = conn.createStatement();
+       //     String sql2 = "SELECT * FROM pronosticos ";
+           String sql = "SELECT " + " idPronostico, idParticipante, idPartido, idEquipo, resultado" + "FROM pronosticos ";
+            ResultSet rs = stmt.executeQuery(sql);
+           //  ResultSet rs2 = stmt.executeQuery(sql2);
+            while (rs.next()){
+                
+              Pronostico pronostico = new Pronostico (rs.getInt("idPronostico"),
+                                                   rs.getInt("idParticipante"), 
+                                                  equipos.getEquipo(rs.getInt("idEquipo")),
+                                                   partidos.getPartido(rs.getInt("idPartido")),
+                                                   rs.getString("resultado").charAt(1));   
+                
+          //Pronostico pronostico = new Pronostico (rs.getInt("idPronostico"),
+            //                                       rs.getInt("idParticipante"), 
+              //                                    equipos.getEquipo(rs.getInt("Equipo")),
+                //                                   partidos.getPartido(rs.getInt("idPartido")),
+                  //                                 rs.getString("Resultado").charAt(1));
+         //   System.out.println("imprimiendo"+rs2.toString());
+            System.out.println(pronostico.toString());
+            p.addPronostico(pronostico);
+            
+                    }
+            }
+            catch(SQLException ex) {
+            System.out.println(ex.getMessage());
+            } finally {
+            try {
+                setPronosticos(p);
+                if (conn!=null) {
+                conn.close();}
+            }
+            catch(SQLException ex){
+             System.out.println(ex.getMessage());
+            }
+            }
        
        
        

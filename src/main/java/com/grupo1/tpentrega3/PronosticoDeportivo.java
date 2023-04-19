@@ -38,8 +38,13 @@ public class PronosticoDeportivo {
        // participantes.cargarDeBD();
         // Una vez cargados los participantes, para cada uno de ellos
         // cargar sus pronósticos
-        for (Participante p : participantes.getParticipantes()) {
-            p.cargarPronosticos(pronosticos);
+    
+       // for (Participante p : participantes.getParticipantes()) {
+       //     p.cargarPronosticos(pronosticos);
+       // }
+        
+         for (Participante p : participantes.getParticipantes()) {
+            p.cargarPronosticosBD(equipos, partidos);
         }
         
         System.out.println("Los participantes cargados son: " + participantes.listar());

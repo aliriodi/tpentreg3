@@ -11,6 +11,7 @@ public class TP {
     public static ListaParticipantes PRODE3;
     public static ListaPronosticos PRODE4;
     public static ListaPartidos LISTAPARTIDOS;
+    
     public static void main(String[] args) {
         System.out.println ("Sistema de simulación de pronósticos deportivos.");
         System.out.println ("Ejecutándose desde:"+System.getProperty("user.dir"));
@@ -37,7 +38,7 @@ public class TP {
  //      System.out.println(PRODE3.listar());
         
    //      System.out.println ("cargando ARCHIVO Lista Participantes");
-        PRODE4.cargarDeArchivo();
+   //     PRODE4.cargarDeArchivo();
    //      System.out.println ("Mostranbdo Lista Participantes");
         System.out.println(PRODE4.listar());
         
