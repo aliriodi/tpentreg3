@@ -140,6 +140,33 @@ public class PronosticoDeportivo {
                     System.out.println(  participante.getNombre()+participante.getNombre().length()+"       "+participante.resultados());
                     break;
          }
-    }             
-    }    
+    }     
+        System.out.println( "\n"+"El ganador o los ganadores son: ");
+        System.out.println( "Nombre                 " + "Puntos");
+        for(Participante p : participantes.getOrdenadosPorPuntaje()){
+            if(p.resultados()==participantes.getOrdenadosPorPuntaje().get(0).resultados())
+            {
+                            
+                 switch (p.getNombre().length()) {
+                case 17:
+                    System.out.println(  p.getNombre()+"         "+p.resultados());
+                    break;
+                case 16:
+                    System.out.println(  p.getNombre()+"          "+p.resultados());
+                    break;
+                case 15:
+                    System.out.println(  p.getNombre()+"           "+p.resultados());
+                    break;
+                case 14:
+                    System.out.println(  p.getNombre()+"            "+p.resultados());
+                    break;
+                 case 13:
+                    System.out.println(  p.getNombre()+"             "+p.resultados());
+                    break;    
+                default:
+                    System.out.println(  p.getNombre()+p.getNombre().length()+"       "+p.resultados());
+                    break;
+         }  }  }   
+    
+    } 
 }
