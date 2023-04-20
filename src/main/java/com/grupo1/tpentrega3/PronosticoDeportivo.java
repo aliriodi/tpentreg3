@@ -59,12 +59,30 @@ public class PronosticoDeportivo {
             p.cargarPronosticosBD(equipos, partidos);
         }
         
-        System.out.println("Los participantes cargados son: " + participantes.listar());
-           System.out.println( "Nombre               " + "Puntos");
+        System.out.println("\n"+"Los participantes cargados son: " + participantes.listar());
+         System.out.println( "\n"+"Los participantes ordenados por ID y sus puntajes son:");   
+        System.out.println( "Nombre                 " + "Puntos");
        for(Participante participante : participantes.getParticipantes()) {
-        
-        System.out.println(  participante.getNombre()+"         "+participante.resultados());
-
+            switch (participante.getNombre().length()) {
+                case 17:
+                    System.out.println(  participante.getNombre()+"         "+participante.resultados());
+                    break;
+                case 16:
+                    System.out.println(  participante.getNombre()+"          "+participante.resultados());
+                    break;
+                case 15:
+                    System.out.println(  participante.getNombre()+"           "+participante.resultados());
+                    break;
+                case 14:
+                    System.out.println(  participante.getNombre()+"            "+participante.resultados());
+                    break;
+                 case 13:
+                    System.out.println(  participante.getNombre()+"             "+participante.resultados());
+                    break;    
+                default:
+                    System.out.println(  participante.getNombre()+participante.getNombre().length()+"       "+participante.resultados());
+                    break;
+            }
     }
 
         //Ordenando Partcipantes
@@ -90,7 +108,7 @@ public class PronosticoDeportivo {
      
         
       //Reimprimiendo
-        System.out.println("Los participantes Ordenados por puntos son: ");
+        System.out.println("\n"+"Los participantes Ordenados por puntos son: ");
 //           System.out.println( "Nombre               " + "Puntos");
 /*     for(Participante participante2 : participantesOrdenados.getParticipantes()) {
         
@@ -99,14 +117,29 @@ public class PronosticoDeportivo {
     }
 */  
  //System.out.println("Los participantes cargados son: " + participantes.listar());
-       System.out.println( "Nombre               " + "Puntos");
+      System.out.println( "Nombre                 " + "Puntos");
        for(Participante participante : participantes.getOrdenadosPorPuntaje()) {
         
-        System.out.println(  participante.getNombre()+"         "+participante.resultados());
-
-    }
-
-        // agregar y/o modificar el codigo que quieran
-        
+         switch (participante.getNombre().length()) {
+                case 17:
+                    System.out.println(  participante.getNombre()+"         "+participante.resultados());
+                    break;
+                case 16:
+                    System.out.println(  participante.getNombre()+"          "+participante.resultados());
+                    break;
+                case 15:
+                    System.out.println(  participante.getNombre()+"           "+participante.resultados());
+                    break;
+                case 14:
+                    System.out.println(  participante.getNombre()+"            "+participante.resultados());
+                    break;
+                 case 13:
+                    System.out.println(  participante.getNombre()+"             "+participante.resultados());
+                    break;    
+                default:
+                    System.out.println(  participante.getNombre()+participante.getNombre().length()+"       "+participante.resultados());
+                    break;
+         }
+    }             
     }    
 }
