@@ -158,14 +158,16 @@ public class ListaParticipantes {
             try {
             // Establcer una conexion
             conn = DriverManager.getConnection(connectionDB);
-            System.out.println("Conexion establecida");
+            System.out.println("Conexion establecida para Participantes");
             Statement stmt = conn.createStatement();
-            String sql = "SELECT " + "idParticipante, nombre " + "FROM partcipantes ";
+            String sql = "SELECT " + "idParticipante, nombre " + "FROM participantes ";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()){
-            Participante participante = new Participante (rs.getInt("idParticipante"),rs.getString("nombre"),null);
+            Participante participante = new Participante (rs.getInt("idParticipante"),
+                                                          rs.getString("nombre"),
+                                                          null);
             System.out.println(participante.toString());
-            
+            this.addParticipante(participante);
             
                     }
             }

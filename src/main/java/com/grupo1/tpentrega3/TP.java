@@ -17,30 +17,30 @@ public class TP {
         System.out.println ("Ejecutándose desde:"+System.getProperty("user.dir"));
         
         PRODE = new PronosticoDeportivo();
-        LISTAEQUIPOS = new ListaEquipos();
-        PRODE3 = new ListaParticipantes();
-        PRODE4 = new ListaPronosticos();
-        LISTAPARTIDOS = new ListaPartidos();
+  //      LISTAEQUIPOS = new ListaEquipos();
+  //      PRODE3 = new ListaParticipantes();
+  //      PRODE4 = new ListaPronosticos();
+  //      LISTAPARTIDOS = new ListaPartidos();
     
 
         
    //     System.out.println ("cargando ARCHIVO Lista Equipos");
    //     LISTAEQUIPOS.cargarDeArchivo();
-        LISTAEQUIPOS.cargarDeBD();
-        LISTAPARTIDOS.cargarDeArchivo(LISTAEQUIPOS);
+  //      LISTAEQUIPOS.cargarDeBD();
+  //      LISTAPARTIDOS.cargarDeArchivo(LISTAEQUIPOS);
   //      System.out.println ("Mostranbdo Lista");
   //      System.out.println(LISTAEQUIPOS.listar());
         
               
  //       System.out.println ("cargando ARCHIVO Lista Participantes");
-        PRODE3.cargarDeArchivo();
+  //      PRODE3.cargarDeArchivo();
  //      System.out.println ("Mostranbdo Lista Participantes");
  //      System.out.println(PRODE3.listar());
         
    //      System.out.println ("cargando ARCHIVO Lista Participantes");
    //     PRODE4.cargarDeArchivo();
    //      System.out.println ("Mostranbdo Lista Participantes");
-        System.out.println(PRODE4.listar());
+   //     System.out.println(PRODE4.listar());
         
         
         PRODE.play();

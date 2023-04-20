@@ -145,7 +145,7 @@ public class ListaPartidos {
             try {
             // Establcer una conexion
             conn = DriverManager.getConnection(connectionDB);
-            System.out.println("Conexion establecida PARTIDOS");
+            System.out.println("Conexion establecida para PARTIDOS");
             Statement stmt = conn.createStatement();
             String sql = "SELECT " + "idPartido, idEquipo1 ,  idEquipo2 ,golesEquipo1 ,golesEquipo2  " + "FROM partidos ";
             ResultSet rs = stmt.executeQuery(sql);
@@ -156,7 +156,7 @@ public class ListaPartidos {
                                            rs.getInt("golesEquipo1"),
                                            rs.getInt("golesEquipo2"));
             System.out.println(partido.toString());
-            
+            this.addPartido(partido);
             
                     }
             }

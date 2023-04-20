@@ -1,5 +1,5 @@
 /*
-Para entrega 2
+Para entrega 3
  */
 package com.grupo1.tpentrega3;
 
@@ -28,22 +28,24 @@ public class PronosticoDeportivo {
         System.out.println("Los equipos cargados son: " + equipos.listar());
  
 
-        partidos.cargarDeArchivo(equipos);
+      //  partidos.cargarDeArchivo(equipos);
+        partidos.cargarDeBD(equipos);
         System.out.println("Los partidos cargados son: " + partidos.listar());
-
       
-        pronosticos.cargarDeArchivo();
+      //  pronosticos.cargarDeArchivo();
         
-        participantes.cargarDeArchivo();
-       // participantes.cargarDeBD();
+      //  participantes.cargarDeArchivo();
+        participantes.cargarDeBD();
         // Una vez cargados los participantes, para cada uno de ellos
         // cargar sus pronósticos
     
        // for (Participante p : participantes.getParticipantes()) {
-       //     p.cargarPronosticos(pronosticos);
+       //      System.out.println("Cargando pronosticos de Archivo");
+          //     p.cargarPronosticos(pronosticos);
        // }
-        
+        System.out.println("Cargando pronosticos de BD por cada participante");
          for (Participante p : participantes.getParticipantes()) {
+               System.out.println("Cargando pronosticos para"+p);
             p.cargarPronosticosBD(equipos, partidos);
         }
         

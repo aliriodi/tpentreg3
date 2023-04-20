@@ -100,10 +100,10 @@ public class Participante {
          p.addPronostico(pronostico);
          System.out.println(pronostico.toString());
             }
-                   
+                  
             
                     }
-            setPronosticos(p);
+            this.setPronosticos(p);
             }
             catch(SQLException ex) {
             System.out.println(ex.getMessage());
