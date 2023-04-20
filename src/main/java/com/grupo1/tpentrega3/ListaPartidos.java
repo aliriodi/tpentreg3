@@ -4,6 +4,11 @@ package com.grupo1.tpentrega3;
 // y el arraylist
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -131,6 +136,41 @@ public class ListaPartidos {
                 System.out.println("Mensaje: " + ex.getMessage());
         }       
 
+    }
+    
+      // cargar desde la BASE DE DATOS
+    public void cargarDeBD(ListaEquipos equipos) {
+            Connection conn = null;
+             String connectionDB = "jdbc:sqlite:"+System.getProperty("user.dir")+"/src/main/java/com/grupo1/tpentrega3/pronosticos.db";
+            try {
+            // Establcer una conexion
+            conn = DriverManager.getConnection(connectionDB);
+            System.out.println("Conexion establecida para PARTIDOS");
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT " + "idPartido, idEquipo1 ,  idEquipo2 ,golesEquipo1 ,golesEquipo2  " + "FROM partidos ";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+            Partido partido = new Partido (rs.getInt("idPartido"),
+                                           equipos.getEquipo(rs.getInt("idEquipo1")),
+                                           equipos.getEquipo(rs.getInt("idEquipo2")),
+                                           rs.getInt("golesEquipo1"),
+                                           rs.getInt("golesEquipo2"));
+            System.out.println(partido.toString());
+            this.addPartido(partido);
+            
+                    }
+            }
+            catch(SQLException ex) {
+            System.out.println(ex.getMessage());
+            } finally {
+            try {
+                if (conn!=null) {
+                conn.close();}
+            }
+            catch(SQLException ex){
+             System.out.println(ex.getMessage());
+            }
+            }
     }
 
   

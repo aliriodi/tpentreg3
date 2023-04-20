@@ -152,13 +152,13 @@ public class ListaEquipos {
             try {
             // Establcer una conexion
             conn = DriverManager.getConnection(connectionDB);
-            System.out.println("Conexion establecida");
+            System.out.println("Conexion establecida para EQUIPOS");
             Statement stmt = conn.createStatement();
-            String sql = "SELECT " + "idEquipo, nombre, descripcion " + "FROM equipos ";
+            String sql = "SELECT " + "idequipo, nombre, descripcion " + "FROM equipos ";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()){
             Equipo equipo = new Equipo (rs.getInt("idEquipo"),rs.getString("nombre"),rs.getString("descripcion"));
-            System.out.println(equipo.toString());
+           // System.out.println(equipo.toString());
             this.addEquipo(equipo);
             
                     }
