@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 //import java.util.logging.Logger;
@@ -182,5 +183,31 @@ public class ListaParticipantes {
              System.out.println(ex.getMessage());
             }
             }
+    }
+    
+    //se invoca al método sort de la interface Collections, para
+    //ordenar la lista
+    public List<Participante> getOrdenadosPorPuntaje(){
+        //Se genera una nueva lista vacia llamada ordenados
+    List<Participante> ordenados = new ArrayList<Participante>();
+    ordenados.addAll(participantes);
+    
+    //Usando libreria collectios para ordenar la nueva lista ordenados
+    Collections.sort(ordenados, Collections.reverseOrder());
+    return ordenados;
+    }
+    
+    //se invoca al método que ordena la lista y se arma una cadena con
+    //los resultados
+    
+    public String listarOrdendosPorPuntaje()
+    {
+        List<Participante> ordenados = this.getOrdenadosPorPuntaje();
+        String lista = "";
+        for (Participante participante: ordenados)
+        {
+            lista+="\n" + participante;
+        }
+        return lista;
     }
 }

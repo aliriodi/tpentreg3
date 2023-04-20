@@ -12,7 +12,7 @@ import java.sql.Statement;
  *
  * @author mcasatti
  */
-public class Participante {
+public class Participante implements Comparable<Participante>{
     private int idParticipante;
     private String nombre;
     private ListaPronosticos pronosticos;
@@ -129,5 +129,18 @@ public class Participante {
     }
     return  salida;
     }
+
+    /**
+     * compara puntaje totoal
+     * @param o
+     * @return
+     */
+    @Override
+     public int compareTo(Participante o) {
+        if(this.resultados()== o.resultados()) return 0;
+        else if (this.resultados() > o.resultados()) return 1;
+        else return -1;
+    }
+    
 }
 
