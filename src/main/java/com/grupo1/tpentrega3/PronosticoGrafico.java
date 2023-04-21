@@ -224,6 +224,7 @@ public class PronosticoGrafico extends javax.swing.JFrame {
                   "\n"+"Nombre                     Puntos \n"+p4+"\n"+
                   "Cargando el Ganador o Ganadores\n"+
                   "\n"+"Nombre                     Puntos \n"+p5+"\n" );
+ salida.setText("Programa Culminado ...");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
