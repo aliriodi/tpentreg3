@@ -78,7 +78,7 @@ public class Participante implements Comparable<Participante>{
             System.out.println("Conexion establecida pronosticos");
             Statement stmt = conn.createStatement();
        //     String sql2 = "SELECT * FROM pronosticos ";
-           String sql = "SELECT " + " idPronostico, idParticipante, idPartido, idEquipo, resultado " + "FROM pronosticos";
+           String sql = "SELECT " + " idPronostico, idParticipante, idPartido, idEquipo, resultado " + "FROM pronosticos "+" WHERE idParticipante = "+Integer.toString(idParticipante);
             ResultSet rs = stmt.executeQuery(sql);
            //  ResultSet rs2 = stmt.executeQuery(sql2);
             while (rs.next()){
